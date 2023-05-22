@@ -96,6 +96,7 @@ body {
 .title{
 	text-align: center;
 	padding-block: 2em;
+	font-size: 1.75rem;
 }
 .gallery .nav {
 	justify-content: center;
@@ -147,6 +148,7 @@ body {
 	font-family: Spectral;
 	font-style: italic;
 	font-weight: 300;
+	font-size: 2.5rem;
 
 }
 .quote__author {
@@ -190,6 +192,11 @@ body {
 	z-index: 1;
 }
 
+.service_price_indication {
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
 #contact {
 	margin: auto;
 	background-color: #D8D3A8 ;
@@ -215,6 +222,11 @@ body {
 	flex : 2;
 
 }
+
+#form-title {
+	font-size: 1.75rem;
+}
+
 form {
 	display: flex;
 	flex-direction: column;
