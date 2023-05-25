@@ -1,5 +1,6 @@
 (function($) {
   $.fn.mauGallery = function(options) {
+    /* console.log(options); */
     var options = $.extend($.fn.mauGallery.defaults, options);
     var tagsCollection = [];
     return this.each(function() {
@@ -57,11 +58,15 @@
       }
     });
 
+    /* const mgPrev = document.querySelector(".mg-prev"); */
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
     $(".gallery").on("click", ".mg-prev", () =>
+      /* mgPrev.style.color = "white",*/
+      /* console.log(options.navigation), */
       $.fn.mauGallery.methods.prevImage(options.lightboxId)
     );
     $(".gallery").on("click", ".mg-next", () =>
+      /* console.log(options.navigation), */
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
     );
   };
@@ -126,12 +131,16 @@
           activeImage = $(this);
         }
       });
+      // console.log(activeImage);
       let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+      // console.log(activeTag);
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function() {
           if ($(this).children("img").length) {
             imagesCollection.push($(this).children("img"));
+            // console.log($(this).children("img"));
+            // console.log(imagesCollection);
           }
         });
       } else {
@@ -142,6 +151,8 @@
               .data("gallery-tag") === activeTag
           ) {
             imagesCollection.push($(this).children("img"));
+            // console.log(imagesCollection);
+            // console.log($(this).children("img"));
           }
         });
       }
@@ -150,12 +161,12 @@
 
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i ;
+          index = i;
+          // console.log(i);
         }
       });
-      next =
-        imagesCollection[index] ||
-        imagesCollection[imagesCollection.length - 1];
+
+      next = imagesCollection[index - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
     nextImage() {
@@ -192,7 +203,7 @@
           index = i;
         }
       });
-      next = imagesCollection[index] || imagesCollection[0];
+      next = imagesCollection[index + 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
     createLightBox(gallery, lightboxId, navigation) {
